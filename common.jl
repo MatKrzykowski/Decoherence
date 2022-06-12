@@ -34,14 +34,14 @@ function versor!(v::AbstractVector)::AbstractVector
 end
 
 # Give direction versor given angles
-function versor_angles(ϕ::Float64, θ::Float64)::AbstractVector 
+function versor_angles(ϕ::Float64, θ::Float64)::AbstractVector
     return [cos(ϕ) * sin(θ)  # x
         sin(ϕ) * sin(θ)      # y
         cos(θ)               # z
     ]
 end
 
-function angles(v::AbstractArray{Float64, 1})::Tuple{Float64,Float64}
+function angles(v::AbstractArray{Float64,1})::Tuple{Float64,Float64}
     v = versor(v)  # Change to versor for convinience
 
     # Calculate in-plane angle ϕ depending on the quadrant
@@ -73,6 +73,14 @@ end
 μ_B = BohrMagneton # Bohr magneton
 k_B = BoltzmannConstant # Boltzmann constant
 
+#######################
+# Physical quantities #
+#######################
+
+ε_unit = typeof(1.0u"V/m").parameters[2]
+E_unit = typeof(1.0u"J").parameters[2]
+B_unit = typeof(1.0u"T").parameters[2]
+
 ############################
 # Bose-Einstein statistics #
 ############################
@@ -82,10 +90,10 @@ function n_B(ω::Quantity{Float64,Unitful.𝐓^-1}, T::Quantity{Float64,Unitful.
     # For 0 energy return 0 to avoid infinities - doesn't change the results
     if ω == 0u"Hz"
         return 0.0
-    # Step function in limit T = 0K, avoids division by 0
+        # Step function in limit T = 0K, avoids division by 0
     elseif T == 0u"K"
         return ω > 0u"Hz" ? 1.0 : 0.0
-    # Otherwise apply proper formula
+        # Otherwise apply proper formula
     else
         return abs(1.0 / expm1(ħ * ω / (k_B * T)) + 1.0)
     end
