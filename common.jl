@@ -1,4 +1,5 @@
 using PhysicalConstants.CODATA2018
+using Unitful
 
 ############
 # Matrices #
@@ -24,3 +25,20 @@ end
 ħ = PlanckConstant / 2 / π # Reduced planck constant
 μ_B = BohrMagneton # Bohr magneton
 k_B = BoltzmannConstant # Boltzmann constant
+
+typeof(ħ)
+
+############################
+# Bose-Einstein statistics #
+############################
+
+function n_B(ω::Quantity{Float64, Unitful.𝐓^-1},
+             T::Quantity{Float64, Unitful.𝚯}
+            )::Float64
+    if ω == 0u"Hz"
+        return 0
+    elseif T == 0u"K"
+        return ω > 0u"Hz" ? 1.0 : 0.0
+    end
+    return abs(1.0 / expm1(ħ * ω / (k_B * T)) + 1.0)
+end
