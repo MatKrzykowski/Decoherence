@@ -1,7 +1,8 @@
 module Common
 
-using PhysicalConstants.CODATA2018
-using Unitful
+using Ansillary # For moving terminal cursor
+using PhysicalConstants.CODATA2018 # For physical constants
+using Unitful # For physical units
 
 ############
 # Matrices #
@@ -32,9 +33,9 @@ k_B = BoltzmannConstant # Boltzmann constant
 # Bose-Einstein statistics #
 ############################
 
-function n_B(ω::Quantity{Float64, Unitful.𝐓^-1},
-            T::Quantity{Float64, Unitful.𝚯}
-            )::Float64
+function n_B(ω::Quantity{Float64,Unitful.𝐓^-1},
+    T::Quantity{Float64,Unitful.𝚯}
+)::Float64
     if ω == 0u"Hz"
         return 0
     elseif T == 0u"K"
@@ -42,5 +43,12 @@ function n_B(ω::Quantity{Float64, Unitful.𝐓^-1},
     end
     return abs(1.0 / expm1(ħ * ω / (k_B * T)) + 1.0)
 end
+
+
+################################
+# Terminal cursor manipulation #
+################################
+
+move_cursor() = Cursor.move!(Cursor.Up(1))
 
 end
