@@ -1,44 +1,46 @@
-using PhysicalConstants.CODATA2018
-using Unitful
+module common
 
-############
-# Matrices #
-############
+    using PhysicalConstants.CODATA2018
+    using Unitful
 
-# Function calculating commutator or two matrices
-function commutator(A::AbstractMatrix, B::AbstractMatrix)::AbstractMatrix
-    A * B - B * A
-end
+    ############
+    # Matrices #
+    ############
 
-# Pauli matrices
-σ_x = [0.0 1.0
-    1.0 0.0] / 2
-σ_y = [0.0 -1.0im
-    1.0im 0.0] / 2
-σ_z = [1.0 0.0
-    0.0 -1.0] / 2
-
-######################
-# Physical constants #
-######################
-
-ħ = PlanckConstant / 2 / π # Reduced planck constant
-μ_B = BohrMagneton # Bohr magneton
-k_B = BoltzmannConstant # Boltzmann constant
-
-typeof(ħ)
-
-############################
-# Bose-Einstein statistics #
-############################
-
-function n_B(ω::Quantity{Float64, Unitful.𝐓^-1},
-             T::Quantity{Float64, Unitful.𝚯}
-            )::Float64
-    if ω == 0u"Hz"
-        return 0
-    elseif T == 0u"K"
-        return ω > 0u"Hz" ? 1.0 : 0.0
+    # Function calculating commutator or two matrices
+    function commutator(A::AbstractMatrix, B::AbstractMatrix)::AbstractMatrix
+        A * B - B * A
     end
-    return abs(1.0 / expm1(ħ * ω / (k_B * T)) + 1.0)
+
+    # Pauli matrices
+    σ_x = [0.0 1.0
+        1.0 0.0] / 2
+    σ_y = [0.0 -1.0im
+        1.0im 0.0] / 2
+    σ_z = [1.0 0.0
+        0.0 -1.0] / 2
+
+    ######################
+    # Physical constants #
+    ######################
+
+    ħ = PlanckConstant / 2 / π # Reduced planck constant
+    μ_B = BohrMagneton # Bohr magneton
+    k_B = BoltzmannConstant # Boltzmann constant
+
+    ############################
+    # Bose-Einstein statistics #
+    ############################
+
+    function n_B(ω::Quantity{Float64, Unitful.𝐓^-1},
+                T::Quantity{Float64, Unitful.𝚯}
+                )::Float64
+        if ω == 0u"Hz"
+            return 0
+        elseif T == 0u"K"
+            return ω > 0u"Hz" ? 1.0 : 0.0
+        end
+        return abs(1.0 / expm1(ħ * ω / (k_B * T)) + 1.0)
+    end
+
 end
