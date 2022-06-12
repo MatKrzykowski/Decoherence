@@ -1,8 +1,8 @@
 module GTensor
 
-struct gTensor
-    g1::AbstractMatrix{Float64}
-    g2::AbstractMatrix{Float64}
+struct gTensor{gType<:AbstractMatrix{Float64}}
+    g1::gType
+    g2::gType
 end
 
 end

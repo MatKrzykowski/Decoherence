@@ -5,9 +5,9 @@ using LinearAlgebra
 import .GTensor: gTensor
 
 struct DensityMatrix
-    ρ::Hermitian
+    ρ::Hermitian{Float64}
     is_eigen::Bool
-    A::AbstractMatrix
+    A::Matrix{Float64}
     g::gTensor
 end
 
