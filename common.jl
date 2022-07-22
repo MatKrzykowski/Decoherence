@@ -21,6 +21,12 @@ end
 σ_z = [1.0 0.0; 0.0 -1.0] / 2
 vec_σ = [σ_x, σ_y, σ_z]
 
+function σ_ij(i::Int64, j::Int64)::AbstractMatrix
+    result = zeros(Int64, 4, 4)
+    result[i, j] = 1
+    return result
+end
+
 ###########
 # Vectors #    
 ###########
