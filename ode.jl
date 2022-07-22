@@ -2,7 +2,9 @@ using DifferentialEquations
 using LinearAlgebra
 
 include("common.jl")
+include("options.jl")
 using .Common: σ_x, σ_0, commutator, ħ, μ_B, time_unit
+using .Options: options
 using Unitful # For physical units
 
 u0 = zeros(ComplexF64, 4, 4)
@@ -23,7 +25,7 @@ H = Hermitian(B * μ_B * kron(σ_0, σ_x))
 params = (H)
 tspan = (0.0u"s", 1.0u"ns") ./ 1u"s"
 prob = ODEProblem(f, u0, tspan, params)
-sol = solve(prob, abstol=1e-9, reltol=1e-9)
+sol = solve(prob, abstol=options.ODE_abstol, reltol=options.ODE_reltol)
 sol
 
 using Plots
