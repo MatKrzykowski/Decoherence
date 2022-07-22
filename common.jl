@@ -15,6 +15,7 @@ function commutator(A::AbstractMatrix, B::AbstractMatrix)::AbstractMatrix
 end
 
 # Pauli matrices
+σ_0 = [1.0 0.0; 0.0 1.0]
 σ_x = [0.0 1.0; 1.0 0.0] / 2
 σ_y = [0.0 -1.0im; 1.0im 0.0] / 2
 σ_z = [1.0 0.0; 0.0 -1.0] / 2
@@ -80,6 +81,7 @@ k_B = BoltzmannConstant # Boltzmann constant
 ε_unit = typeof(1.0u"V/m").parameters[2]
 E_unit = typeof(1.0u"J").parameters[2]
 B_unit = typeof(1.0u"T").parameters[2]
+time_unit = 1u"ns"
 
 ############################
 # Bose-Einstein statistics #
