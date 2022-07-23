@@ -14,7 +14,7 @@ struct QD_struct
 end
 
 struct Model_struct
-    QD::QD_struct
+    QD::Union{QD_struct, Nothing}
     B::Vector{Quantity{Float64,B_unit}}
     ε::Vector{Quantity{Float64,ε_unit}}
     E::Vector{Quantity{Float64,E_unit}}
