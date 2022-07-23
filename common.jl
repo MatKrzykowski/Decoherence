@@ -15,11 +15,11 @@ function commutator(A::AbstractMatrix, B::AbstractMatrix)::AbstractMatrix
 end
 
 # Pauli matrices
-σ_0 = [1.0 0.0; 0.0 1.0]
-σ_x = [0.0 1.0; 1.0 0.0] / 2
-σ_y = [0.0 -1.0im; 1.0im 0.0] / 2
-σ_z = [1.0 0.0; 0.0 -1.0] / 2
-vec_σ = [σ_x, σ_y, σ_z]
+const σ_0 = [1.0 0.0; 0.0 1.0]
+const σ_x = [0.0 1.0; 1.0 0.0] / 2
+const σ_y = [0.0 -1.0im; 1.0im 0.0] / 2
+const σ_z = [1.0 0.0; 0.0 -1.0] / 2
+const vec_σ = [σ_x, σ_y, σ_z]
 
 function σ_ij(i::Int64, j::Int64)::AbstractMatrix
     result = zeros(Int64, 4, 4)
@@ -77,18 +77,18 @@ end
 # Physical constants #
 ######################
 
-ħ = PlanckConstant / 2 / π # Reduced planck constant
-μ_B = BohrMagneton # Bohr magneton
-k_B = BoltzmannConstant # Boltzmann constant
+const ħ = PlanckConstant / 2 / π # Reduced planck constant
+const μ_B = BohrMagneton # Bohr magneton
+const k_B = BoltzmannConstant # Boltzmann constant
 
 #######################
 # Physical quantities #
 #######################
 
-ε_unit = typeof(1.0u"V/m").parameters[2]
-E_unit = typeof(1.0u"J").parameters[2]
-B_unit = typeof(1.0u"T").parameters[2]
-time_unit = 1u"ns"
+const ε_unit = typeof(1.0u"V/m").parameters[2]
+const E_unit = typeof(1.0u"J").parameters[2]
+const B_unit = typeof(1.0u"T").parameters[2]
+const time_unit = 1u"ns"
 
 ############################
 # Bose-Einstein statistics #
