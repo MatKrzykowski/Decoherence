@@ -1,3 +1,5 @@
+using QuadGK
+
 function FF(i::Int, j::Int, ω::Float64, u::Float64)::Float64
     @assert 1 <= i <= 4
     @assert 1 <= j <= 4
@@ -16,6 +18,9 @@ function FF(i::Int, j::Int, ω::Float64, u::Float64)::Float64
 
     return result * exp(-1.0 * (ω / cl / 2.0)^2 * sigma_pow2)
 end
+
+
+quadgk(sin, 0, π)
 
 # auto R_int = [&params](double u) -> double {
 #                  double *alpha = (double *)params;
