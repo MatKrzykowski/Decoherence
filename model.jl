@@ -13,7 +13,7 @@ struct QD_struct
     h::Quantity{Float64,m_unit}
 end
 
-struct Model_struct
+mutable struct Model_struct
     QD::Union{QD_struct, Nothing}
     B::Vector{Quantity{Float64,B_unit}}
     ε::Vector{Quantity{Float64,ε_unit}}
@@ -21,18 +21,18 @@ struct Model_struct
 end
 
 QD = QD_struct(
-    1u"eV",
-    1u"eV",
-    1u"m",
-    1u"m",
-    1u"m",
+    3u"meV",
+    0.5u"meV",
+    5u"nm",
+    2u"nm",
+    5u"nm",
 )
 
 model = Model_struct(
-    QD,
-    [0, 0, 1.0] * 1u"T",
-    [0, 0, 1.0] * 1u"V/m",
-    [0, 0, 1.0] * 1u"eV",
+    nothing,
+    zeros(Float64, 3) * 1u"T",
+    zeros(Float64, 3) * 1u"V/m",
+    zeros(Float64, 4) * 1u"eV",
 )
 
 end
