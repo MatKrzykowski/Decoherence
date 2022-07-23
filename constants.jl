@@ -35,6 +35,7 @@ const c_l = 5.15e3u"m/s" # Speed of sound in GaAs
 const ε_unit = typeof(1.0u"V/m").parameters[2]
 const E_unit = typeof(1.0u"J").parameters[2]
 const B_unit = typeof(1.0u"T").parameters[2]
+const m_unit = typeof(1.0u"m").parameters[2]
 const time_unit = 1u"ns"
 
 end
