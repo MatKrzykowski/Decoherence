@@ -23,6 +23,12 @@ const μ_B = BohrMagneton # Bohr magneton
 const k_B = BoltzmannConstant # Boltzmann constant
 
 #######################
+# Material parameters #
+#######################
+
+const c_l = 5.15e3u"m/s" # Speed of sound in GaAs
+
+#######################
 # Physical quantities #
 #######################
 
