@@ -2,8 +2,10 @@ using DifferentialEquations
 using LinearAlgebra
 
 include("common.jl")
+include("constants.jl")
 include("options.jl")
-using .Common: σ_x, σ_0, commutator, ħ, μ_B, time_unit
+using .Common: commutator
+using .Constants: σ_x, σ_0, ħ, μ_B, time_unit
 using .Options: options
 using Unitful # For physical units
 

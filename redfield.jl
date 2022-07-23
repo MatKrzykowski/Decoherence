@@ -3,7 +3,9 @@ using LinearAlgebra
 I[1,2]
 
 include("common.jl")
-using .Common: commutator, ħ, time_unit
+include("constants.jl")
+using .Common: commutator
+using .Constants: ħ, time_unit
 
 function Redfield(
     ρ::AbstractMatrix,
