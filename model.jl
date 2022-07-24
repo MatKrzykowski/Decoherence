@@ -1,6 +1,7 @@
 module Model
 
 using Unitful
+using LinearAlgebra
 
 include("constants.jl")
 import .Constants: B_unit, ε_unit, E_unit, m_unit
@@ -13,11 +14,13 @@ struct QD_struct
     h::Quantity{Float64,m_unit}
 end
 
-mutable struct Model_struct
-    QD::Union{QD_struct, Nothing}
+struct Model_struct
+    QD::Union{QD_struct,Nothing}
     B::Vector{Quantity{Float64,B_unit}}
     ε::Vector{Quantity{Float64,ε_unit}}
     E::Vector{Quantity{Float64,E_unit}}
+    H::Hermitian{Quantity{ComplexF64,E_unit},Matrix{Quantity{ComplexF64,E_unit}}}
+    ĝ::Vector{Matrix{Float64}}
 end
 
 QD = QD_struct(
@@ -33,6 +36,11 @@ model = Model_struct(
     zeros(Float64, 3) * 1u"T",
     zeros(Float64, 3) * 1u"V/m",
     zeros(Float64, 4) * 1u"eV",
+    Hermitian(zeros(ComplexF64, 4, 4) * u"eV"),
+    [
+        Matrix([0.0 0.0 0.0; 0.0 0.0 0.0; 0.0 0.0 0.0]),
+        Matrix([0.0 0.0 0.0; 0.0 0.0 0.0; 0.0 0.0 0.0]),
+    ]
 )
 
 end
