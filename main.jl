@@ -15,5 +15,6 @@ import .Decoherence: decoherence
 # end
 
 for i in ProgressBar(1:10, leave = true)
+    # Generate model
     decoherence()
 end
