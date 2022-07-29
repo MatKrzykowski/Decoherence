@@ -1,14 +1,14 @@
 module Density_Matrix
 
-include("gtensor.jl")
 using LinearAlgebra
+
+include("gtensor.jl")
 import .GTensor: gTensor
 
-struct DensityMatrix
-    ρ::Hermitian{Float64}
-    is_eigen::Bool
-    A::Matrix{Float64}
-    g::gTensor
+function default_ρ()
+    ρ = zeros(ComplexF64, 4, 4)
+    ρ[3, 3] = 1
+    return ρ
 end
 
 end
